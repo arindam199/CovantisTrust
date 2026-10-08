@@ -5,7 +5,7 @@ import {
   Plus, Wallet, ShieldCheck, ArrowRight, Box, 
   Activity, Hash, MapPin, Copy, ExternalLink,
   ChevronRight, Thermometer, ShieldAlert,
-  QrCode, AlertTriangle
+  QrCode, AlertTriangle, LogOut
 } from 'lucide-react';
 import OrderTrackingArtifact from './artifacts/contracts/OrderTracking.sol/OrderTracking.json';
 import { useToast } from './components/Toast';
@@ -62,6 +62,13 @@ export default function App() {
     } else {
       alert("Please install MetaMask to use this application.");
     }
+  };
+
+  const disconnectWallet = () => {
+    setAccount(null);
+    setContract(null);
+    setOrders([]);
+    addToast('info', 'Disconnected from wallet');
   };
 
   const initializeContract = async (userAccount) => {
@@ -234,14 +241,23 @@ export default function App() {
 
             <div className="flex items-center gap-4">
               {account ? (
-                <div className="flex items-center gap-3 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-lg">
-                  <div className="flex h-2.5 w-2.5 relative">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-lg">
+                    <div className="flex h-2.5 w-2.5 relative">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </div>
+                    <span className="text-sm font-medium text-slate-300 font-mono">
+                      {account.slice(0, 6)}...{account.slice(-4)}
+                    </span>
                   </div>
-                  <span className="text-sm font-medium text-slate-300 font-mono">
-                    {account.slice(0, 6)}...{account.slice(-4)}
-                  </span>
+                  <button 
+                    onClick={disconnectWallet}
+                    className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors border border-transparent hover:border-slate-700"
+                    title="Disconnect Wallet"
+                  >
+                    <LogOut size={18} />
+                  </button>
                 </div>
               ) : (
                 <button 
