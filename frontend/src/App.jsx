@@ -537,13 +537,10 @@ export default function App() {
                                 </div>
                               </div>
                             )}
-                          </div>  
                               <div className="mt-auto pt-4 text-[10px] text-slate-400 font-mono flex items-center gap-1 w-full justify-end cursor-pointer hover:text-teal-600">
                                 Verify on Explorer <ExternalLink size={10} />
                               </div>
-                            </div>
-                            
-                          </div>
+                          </div>  
                         </div>
                       )
                     })
