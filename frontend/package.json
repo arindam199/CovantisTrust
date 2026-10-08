@@ -1,0 +1,35 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "prestart:all": "npx kill-port 8545",
+    "start:all": "concurrently \"npm run hardhat-node\" \"npm run deploy-contract\" \"npm run dev\"",
+    "hardhat-node": "npx hardhat node",
+    "deploy-contract": "npx hardhat run ./scripts/deploy.js --network localhost",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "ethers": "^6.17.0",
+    "framer-motion": "^13.2.0",
+    "lucide-react": "^1.43.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.1",
+    "autoprefixer": "^10.5.5",
+    "concurrently": "^10.0.5",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.2"
+  }
+}
